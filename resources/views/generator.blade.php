@@ -5,7 +5,7 @@
     <section class="musee-block">
         <div class="container">
             <div class="heading"><h2>Sitemap Generator</h2></div>
-            <form method="POST" action="{{route('muse.generator.post')}}">
+            <form method="POST" action="{{route('musee.generator.post')}}">
                 @include('errors')
 
                 @csrf

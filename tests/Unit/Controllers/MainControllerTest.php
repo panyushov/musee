@@ -123,7 +123,7 @@ class MainControllerTest extends TestCase
         factory(SMTPConfig::class)->make()->save();
         $response = $this->mainController->index();
         $this->assertEquals(302, $response->getStatusCode());
-        $this->assertEquals(route('muse.generator'), $response->getTargetUrl());
+        $this->assertEquals(route('musee.generator'), $response->getTargetUrl());
     }
 
     /**
@@ -132,7 +132,7 @@ class MainControllerTest extends TestCase
     public function index_redirect_without_config()
     {
         $response = $this->mainController->index();
-        $this->assertEquals(route('muse.config'), $response->getTargetUrl());
+        $this->assertEquals(route('musee.config'), $response->getTargetUrl());
     }
 
     protected function setUp(): void

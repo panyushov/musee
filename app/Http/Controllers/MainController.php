@@ -29,7 +29,7 @@ class MainController extends Controller
         SMTPConfig::cleanCorruption();
         SMTPConfig::saveConfig($input);
 
-        return redirect()->route('muse.config');
+        return redirect()->route('musee.config');
     }
 
     /**
@@ -51,7 +51,7 @@ class MainController extends Controller
 
         $qServ->dispatchCitiesJobs();
 
-        return redirect()->route('muse.generator');
+        return redirect()->route('musee.generator');
     }
 
     /**
@@ -120,9 +120,9 @@ class MainController extends Controller
     public function index()
     {
         if (!SMTPConfig::exists()) {
-            return redirect()->route('muse.config');
+            return redirect()->route('musee.config');
         } else {
-            return redirect()->route('muse.generator');
+            return redirect()->route('musee.generator');
         }
     }
 }

@@ -15,11 +15,11 @@
                     class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{route('muse.generator')}}">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{route('musee.generator')}}">
                         Generator
                     </a>
                 </li>
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{route('muse.config')}}">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="{{route('musee.config')}}">
                         Config
                     </a>
                 </li>

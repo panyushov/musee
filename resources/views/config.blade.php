@@ -5,7 +5,7 @@
     <section class="musee-block">
         <div class="container">
             <div class="heading"><h2>SMTP</h2></div>
-            <form method="POST" action="{{route('muse.config.post')}}">
+            <form method="POST" action="{{route('musee.config.post')}}">
                 @include('errors')
 
                 @csrf
