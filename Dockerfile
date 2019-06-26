@@ -42,9 +42,17 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
+# Make artisan executable
+RUN chmod +x /var/www/artisan
+
+COPY docker/docker-php-entrypoint /
+RUN chmod +x /docker-php-entrypoint
+
 # Change current user to www
 USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
+
+ENTRYPOINT ["/docker-php-entrypoint"]
