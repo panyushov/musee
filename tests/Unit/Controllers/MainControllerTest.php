@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Models\SMTPConfig;
 
 use App\Services\DatabaseQueueService;
+use App\Services\MusementService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -67,6 +68,7 @@ class MainControllerTest extends TestCase
 
         $input = [
             'emails' => 'test@test.com',
+            'locale' => MusementService::ITALIAN_LOCALE,
         ];
         $request = new Request($input);
 

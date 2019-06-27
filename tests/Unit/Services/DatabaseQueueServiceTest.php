@@ -20,6 +20,7 @@ use Tests\TestCase;
  */
 class DatabaseQueueServiceTest extends TestCase
 {
+
     use RefreshDatabase;
 
     protected $testLocale;
@@ -34,11 +35,9 @@ class DatabaseQueueServiceTest extends TestCase
     public function dispatches_cities_jobs_correctly()
     {
         Queue::fake();
-        // Number of cities jobs should be equal to total numbero of available locales
-        $nExpectedJobs = count(MusementService::allSupportedLocales());
         $this->db->dispatchCitiesJobs();
 
-        Queue::assertPushed(ProcessCities::class, $nExpectedJobs);
+        Queue::assertPushed(ProcessCities::class, 1);
     }
 
     /**
@@ -98,7 +97,7 @@ class DatabaseQueueServiceTest extends TestCase
     {
         Mail::fake();
         // Config with recipients
-        factory(SMTPConfig::class)->state('with-recipients')->make()->save();
+        factory(SMTPConfig::class)->state('with-recipients-and-locale')->make()->save();
 
         $this->db->queueIsComplete();
 

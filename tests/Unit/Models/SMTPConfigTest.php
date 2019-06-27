@@ -124,7 +124,7 @@ class SMTPConfigTest extends TestCase
         $this->assertEmpty(SMTPConfig::config()->getRecipients());
 
         SMTPConfig::truncate();
-        factory(SMTPConfig::class)->state('with-recipients')->make()->save();
+        factory(SMTPConfig::class)->state('with-recipients-and-locale')->make()->save();
         $this->assertIsArray(SMTPConfig::config()->getRecipients());
         $this->assertNotEmpty(SMTPConfig::config()->getRecipients());
     }
