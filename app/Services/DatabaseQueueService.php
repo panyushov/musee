@@ -13,14 +13,14 @@ class DatabaseQueueService
 {
     /**
      * If there's no generation in progress, this method dispatched
-     * cities processing job for every locale available.
+     * cities processing job for specified locale.
+     *
+     * @param string $locale
      */
-    public function dispatchCitiesJobs()
+    public function dispatchCitiesJobs($locale = MusementService::ITALIAN_LOCALE)
     {
         if (!$this->generationInProgress()) {
-            foreach (MusementService::allSupportedLocales() as $locale) {
-                ProcessCities::dispatch($locale);
-            }
+            ProcessCities::dispatch($locale);
         }
     }
 
@@ -45,12 +45,12 @@ class DatabaseQueueService
         if (!$this->generationInProgress() and SMTPConfig::exists()) {
             $config = SMTPConfig::config();
             $recipients = $config->getRecipients();
-            if ($recipients) {
+            $locale = $config->locale;
+            if ($recipients and $locale) {
                 $config->setConfig();
-                foreach (MusementService::allSupportedLocales() as $locale) {
-                    $this->sendEmail($locale, $recipients, $config);
-                }
+                $this->sendEmail($locale, $recipients, $config);
                 $config->notify = null;
+                $config->locale = null;
                 $config->save();
             }
         }

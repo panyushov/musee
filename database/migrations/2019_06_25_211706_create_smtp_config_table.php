@@ -21,6 +21,7 @@ class CreateSmtpConfigTable extends Migration
             $table->string('password');
             $table->string('encryption');
             $table->string('from');
+            $table->text('locale')->nullable();
             $table->longText('notify')->nullable();
             $table->longText('corrupt')->nullable();
         });

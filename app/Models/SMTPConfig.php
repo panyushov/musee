@@ -94,6 +94,19 @@ class SMTPConfig extends Model
     }
 
     /**
+     * Stores locale in the config table.
+     *
+     * @param $locale
+     */
+    public static function setLocale($locale)
+    {
+        if (strlen($locale) > 0 and ($config = self::config())) {
+            $config->locale = $locale;
+            $config->save();
+        }
+    }
+
+    /**
      * Sets app's mail config based on the values stored
      * in the table.
      */

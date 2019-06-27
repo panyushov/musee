@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\SMTPConfig;
 use App\Services\DatabaseQueueService;
+use App\Services\MusementService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MainController extends Controller
 {
@@ -43,13 +45,17 @@ class MainController extends Controller
     {
         $request->validate([
             "emails" => 'sometimes|emails',
+            "locale" => ['required', Rule::in(MusementService::allSupportedLocales())],
         ]);
 
-        SMTPConfig::setRecipients($request->input("emails"));
+        $recipients = $request->input("emails");
+        $locale = $request->input("locale");
+        SMTPConfig::setRecipients($recipients);
+        SMTPConfig::setLocale($locale);
         SMTPConfig::cleanCorruption();
 
 
-        $qServ->dispatchCitiesJobs();
+        $qServ->dispatchCitiesJobs($locale);
 
         return redirect()->route('musee.generator');
     }
@@ -68,6 +74,7 @@ class MainController extends Controller
 
         $vars = [
             "warnings" => $warnings,
+            "locales" => MusementService::allSupportedLocales(),
             "flgGenerating" => $qServ->generationInProgress()
         ];
         return view('generator', $vars);

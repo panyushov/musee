@@ -9,6 +9,15 @@
                 @include('errors')
 
                 @csrf
+                <div class="form-group">
+                    <label for="subject">Locale</label>
+                    <select class="form-control" id="locale" name="locale">
+                        <option value="" selected="">Choose Locale</option>
+                        @foreach($locales as $locale)
+                            <option value="{{$locale}}">{{$locale}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group"><label for="host">Recipients (separated by comma)</label><input
                             class="form-control" type="text" name="emails"
                             id="emails"></div>
