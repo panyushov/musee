@@ -22,6 +22,7 @@ You gonna need Docker installed and running on your platform. After that you can
 ```
 git clone https://github.com/panyushov/musee.git
 cd musee
+docker run --rm -v $(pwd):/app composer install
 docker-compose up --build
 ```
 And that's it!
