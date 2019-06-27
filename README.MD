@@ -45,7 +45,7 @@ The second and very important step is to launch the app initialization command:
 php artisan app:init
 ```
 
-This command launches background workers that process Laravel Queue jobs. Remember executes it every time your machine restarts.
+This command launches background workers that process Laravel Queue jobs. Remember to execute it every time your machine restarts.
 
 ## Running the tests
 
